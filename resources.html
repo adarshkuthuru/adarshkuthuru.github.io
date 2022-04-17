@@ -43,8 +43,8 @@
 								<header class="major">
 									<span class="date">April 16, 2022</span>
 									<h2>Solving non-convex optimization problems</h2>
-									<h3>Explanation for why we can't use Neural Networks for non-convex optimization
-										problems instead of Genetic Algorithms</h3>
+									<!-- <h3>Explanation for why we can't use Neural Networks for non-convex optimization -->
+										<!-- problems instead of Genetic Algorithms</h3> -->
 								</header>
 	
 								<p>In order to choose any algorithm to solve a non-linear (non-convex) optimization problem, we need to consider the following factors:
@@ -68,7 +68,7 @@
 								&nbsp; 
 								
 								<!-- <h3>1. How fast can the algorithm learn and converge?</h3> -->
-								<h3>Challenges when using Neural networks for non-convex optimizations</h3>
+								<h3>Challenges when using Neural networks for non-convex optimizations as opposed to genetic algorithms</h3>
 								<ol>
 								<li> <b>Hyperparamter Optimization: </b> <br> In comparison to Genetic Algorithms, Neural Networks have more hyperparameters to be optimized
 									 like learning rate (need to be specified for gradient descent approach), 
@@ -77,7 +77,12 @@
 								It could take a significant/polynomial time to optimize all of the hyperparameters. Therefore, it is at least an NP-Hard problem.
 								</li>
 
-
+								<center>
+									<figure>
+									<div class="image"><img src="images/neuralnet.png" alt="" width="600" height="300"/></div>
+									<figcaption><a href="https://blog.floydhub.com/guide-to-hyperparameters-search-for-deep-learning-models/">fig.</a> Sample Neural Network with 3 hidden layers</figcaption>
+									</figure>
+								</center>
 
 								
 								&nbsp; 
@@ -163,45 +168,115 @@
 								<p>
 									In order to address these various solutions were proposed like gradient clipping (where the gradients are constrained by a threshold), usage of 
 									activation functions like Rectified Linear Units (ReLU), Stochastic Gradient Descent (SGD - adding a stochastic term to gradient descent which 
-									updates weights randomly), Momentum, NAG, Adaptive Learning Rate, Adagrad, Adadelta, Rmsprop etc.
+									updates weights randomly), Momentum, NAG, Adaptive Learning Rate, Adagrad, Adadelta, RmsProp etc.
 								</p>
 							
-							<ul>
-								<center>
-									<figure>
-									<div class="image"><img src="images/SGD.png" alt="" width="550" height="300"/></div>
-									<figcaption><a href="https://ankit-ai.blogspot.com/2018/11/optimization-algorithms-for-machine.html">fig.</a> Stochastic Gradient Descent Vs Gradient Descent </figcaption>
-									</figure>
-								</center>
+								<ul>
+									<center>
+										<figure>
+										<div class="image"><img src="images/SGD.png" alt="" width="550" height="300"/></div>
+										<figcaption><a href="https://ankit-ai.blogspot.com/2018/11/optimization-algorithms-for-machine.html">fig.</a> Stochastic Gradient Descent Vs Gradient Descent </figcaption>
+										</figure>
+									</center>
 
-								<li><b>Stochastic Gradient Descent:</b> <br> 
-									From the above animation and image, SGD is still at the risk of getting stuck in local minima. So we can eliminate it as a possible solution.
-		
-								</li>
+									<li><b>Stochastic Gradient Descent:</b> <br> 
+										From the above animation and image, SGD is still at the risk of getting stuck in local minima. So we can eliminate it as a possible solution.
+			
+									</li>
 
-								<li><b>Stochastic Gradient Descent with Momentum:</b> <br> 
-									In the presence of curvature, regular SGD oscillates a lot as shown in the below image, thus delaying the process of converging. Therefore SGD with momentum approach was 
-									propsoed wherein the gradient is averaged to dampen the oscillations and obtain a faster path to optimization.
-								</li>
-								<center>
-									<figure>
-									<div class="image"><img src="images/mom.png" alt="" width="450" height="150"/></div>
-									<figcaption><a href="https://mitpress.mit.edu/books/deep-learning">fig.</a> (Left) Regular SGD, (right) SGD with Momentum. <br>Goodfellow, I., Bengio, Y. and Courville, A. (2016). Deep learning. MIT press.</figcaption>
-									</figure>
-								</center>
+									<li><b>Stochastic Gradient Descent with Momentum:</b> <br> 
+										In the presence of curvature, regular SGD oscillates a lot as shown in the below image, thus delaying the process of converging. Therefore SGD with momentum approach was 
+										propsoed wherein the gradient is averaged to dampen the oscillations and obtain a faster path to optimization.
+									</li>
+									<center>
+										<figure>
+										<div class="image"><img src="images/mom.png" alt="" width="450" height="150"/></div>
+										<figcaption><a href="https://mitpress.mit.edu/books/deep-learning">fig.</a> (Left) Regular SGD, (right) SGD with Momentum. <br>Goodfellow, I., Bengio, Y. and Courville, A. (2016). Deep learning. MIT press.</figcaption>
+										</figure>
+									</center>
+									
+									<li><b>Adaptive learning rate:</b> <br> 
+										In the below image, when we are trying to minimize the cost function 'J' which is a function of parameters <math>Θ<sub>1</sub> & Θ<sub>2</sub></math>,
+										we need to optimize the magnitude of oscillations to be proportional to the range of the parameter. Hence, the learning rates should be lower for lower oscillations and vice versa.
+									</li>
+									<center>
+										<figure>
+										<div class="image"><img src="images/adalearn.png" alt="" width="450" height="250"/></div>
+										<figcaption><a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">fig.</a> Adaptive learning rates.</figcaption>
+										</figure>
+									</center>
+
 								
-								<li><b>Adaptive learning rate:</b> <br> 
-									In the below image, when we are trying to minimize the cost function 'J' which is a function of parameters <math>Θ<sub>1</sub> & Θ<sub>2</sub></math>,
-									we need to optimize the magnitude of oscillations to be proportional to the range of the parameter. Hence, the learning rates should be lower for lower oscillations and vice versa.
-								</li>
-								<center>
-									<figure>
-									<div class="image"><img src="images/adalearn.png" alt="" width="450" height="250"/></div>
-									<figcaption><a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">fig.</a> Adaptive learning rates.</figcaption>
-									</figure>
-								</center>
-							</ul>
+									<li><b>AdaGrad:</b> <br> 
+										In SGD, a random term is added to the gradient to update the weights and speed up the path to optimization, 
+										whereas here the parameters are updated to achieve the same goal. This updation factor is proportional to the importance of 
+										the parameter, thus called adaptive.
 
+										<p>
+											One of the advantages of AdaGrad is that it eliminates the use of learning rate parameter. Thus achieves greater progress
+											along gently sloped directions.
+										</p>
+									</li>
+									<center>
+										<figure>
+										<div class="image"><img src="images/adagrad.png" alt="" width="450" height="150"/></div>
+										<figcaption><a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">fig.</a> AdaGrad gradient updation.</figcaption>
+										</figure>
+									</center>
+									
+									&nbsp; 
+									<center>
+									<math>
+
+									where,
+
+									Θ<sub>i</sub> = i<sup>th</sup> parameter; <br> 
+									r<sub>i</sub> = cumulative gradient of i<sup>th</sup> parameter; <br> 
+									g<sub>i</sub> = current gradient of i<sup>th</sup> parameter; <br> 
+									δ, ε ~ N(0,1) (iid) <br> 
+
+
+									</math>
+									</center>
+
+
+									<li><b>RMSProp</b> <br> 
+										AdaGrad does not do well for non-convex problems as it can prematurely decrease the speed of learning by giving equal weights to gradients at all 
+										stages. In order to speed up the optimization, steep slopes must be given higher weights. That is exactly what RMSProp does.
+									</li>
+									<center>
+									<figure>
+									<div class="image"><img src="images/rmsprop.png" alt="" width="200" height="100"/></div>
+									<figcaption><a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">fig.</a> RMSProp exponential gradient updation</figcaption>
+									</figure>
+								
+									<math>
+
+									where,
+									ρ = [0,1] <br> 
+
+
+									</math>
+									</center>
+					
+								</ul>
+
+								<h3>Conclusion:</h3>
+								<p>Using Neural Networks for non-convex optimizations is still tricky. We need to make additional adjustments to conventional gradient descent 
+								approach that is followed in the deep learning process to use them. If the adjusted models are accurate, they would take longer time to converge. 
+								If approximations are made, it could lead to poor conditioning, which means slower learning rates, rapid changes in output for a small change in inputs etc., 
+								as the optimization process is not stable. </p>
+								
+								<p>Genetic Algorithms on the other hand are specifically designed to solve 
+									optimization problems and hence do not face most of the challenges faced by Neural Networks. 
+									But as it is a heuristic approach, there are some approximations involved. Hence, solutions may not be very accurate.
+									Now the question to ask when selecting an algorithm for our optimization problem is our threshold for accuracy and speed.
+									Accordingly, we can map out the accuracy levels and time for converging for these algorithms and choose the most desired one.</p>
+									
+								<p>
+									So I infer that though Genetic Algorithms are the go-to solutions to non-convex optimizations, we need to consider
+									other factors like accuracy, ease of customization etc., to pick the desired algorithm.
+								</p>
 							</ol>
 
 							</section>
