@@ -77,12 +77,7 @@
 								It could take a significant/polynomial time to optimize all of the hyperparameters. Therefore, it is at least an NP-Hard problem.
 								</li>
 
-								<center>
-								<figure>
-								<div class="animated-gif"><img src="images/Opt.gif" alt="" width="500" height="400"/></div>
-								<figcaption><a href="https://pin.it/6E7hJn3">fig.</a> Learning and converging rates of some Neural network extensions that I will talk about below</figcaption>
-								</figure>
-								</center>
+
 
 								
 								&nbsp; 
@@ -159,12 +154,19 @@
 								</p>
 
 								<!-- &nbsp;  -->
+								<center>
+									<figure>
+									<div class="animated-gif"><img src="images/Opt.gif" alt="" width="500" height="400"/></div>
+									<figcaption><a href="https://pin.it/6E7hJn3">fig.</a> Learning and converging rates of some Neural network extensions that I will talk about below</figcaption>
+									</figure>
+								</center>
 								<p>
 									In order to address these various solutions were proposed like gradient clipping (where the gradients are constrained by a threshold), usage of 
 									activation functions like Rectified Linear Units (ReLU), Stochastic Gradient Descent (SGD - adding a stochastic term to gradient descent which 
 									updates weights randomly), Momentum, NAG, Adaptive Learning Rate, Adagrad, Adadelta, Rmsprop etc.
 								</p>
 							
+							<ul>
 								<center>
 									<figure>
 									<div class="image"><img src="images/SGD.png" alt="" width="550" height="300"/></div>
@@ -172,18 +174,38 @@
 									</figure>
 								</center>
 
-								<p>
-									From the above image, SGD also is at the risk of getting stuck in local minima. So we can eliminate it as a possible solution.
+								<li><b>Stochastic Gradient Descent:</b> <br> 
+									From the above animation and image, SGD is still at the risk of getting stuck in local minima. So we can eliminate it as a possible solution.
 		
-								</p>
+								</li>
 
-								<p>
-
-									
-								</p>
+								<li><b>Stochastic Gradient Descent with Momentum:</b> <br> 
+									In the presence of curvature, regular SGD oscillates a lot as shown in the below image, thus delaying the process of converging. Therefore SGD with momentum approach was 
+									propsoed wherein the gradient is averaged to dampen the oscillations and obtain a faster path to optimization.
+								</li>
+								<center>
+									<figure>
+									<div class="image"><img src="images/mom.png" alt="" width="450" height="150"/></div>
+									<figcaption><a href="https://mitpress.mit.edu/books/deep-learning">fig.</a> (Left) Regular SGD, (right) SGD with Momentum. <br>Goodfellow, I., Bengio, Y. and Courville, A. (2016). Deep learning. MIT press.</figcaption>
+									</figure>
+								</center>
+								
+								<li><b>Adaptive learning rate:</b> <br> 
+									In the below image, when we are trying to minimize the cost function 'J' which is a function of parameters <math>Θ<sub>1</sub> & Θ<sub>2</sub></math>,
+									we need to optimize the magnitude of oscillations to be proportional to the range of the parameter. Hence, the learning rates should be lower for lower oscillations and vice versa.
+								</li>
+								<center>
+									<figure>
+									<div class="image"><img src="images/adalearn.png" alt="" width="450" height="250"/></div>
+									<figcaption><a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">fig.</a> Adaptive learning rates.</figcaption>
+									</figure>
+								</center>
+							</ul>
 
 							</ol>
+
 							</section>
+
 
 					</div>
 
