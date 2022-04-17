@@ -41,16 +41,148 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
-									<span class="date">April 25, 2017</span>
-									<h1>This is a<br />
-									Generic Page</h1>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
+									<span class="date">April 16, 2022</span>
+									<h2>Solving non-convex optimization problems</h2>
+									<h3>Explanation for why we can't use Neural Networks for non-convex optimization
+										problems instead of Genetic Algorithms</h3>
 								</header>
-								<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
-								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien risus, commodo eget turpis at, elementum convallis enim turpis, lorem ipsum dolor sit amet nullam.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus. Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum.</p>
+	
+								<p>In order to choose any algorithm to solve a non-linear (non-convex) optimization problem, we need to consider the following factors:
+									<ol>
+									<li> How fast can the algorithm learn and converge? (Initialization matters a lot for this)</li>
+									<li>  How to resolve if the solution gets stuck in local optima or saddle points?</li>
+									<li>   Sensitivity of the algorithm to new data i.e., if the training data set is 
+										not representative of the population, how would it perform with test data?</li>
+									</ol> 
+								</p>
+
+								<center>
+								<figure>
+								<div class="image"><img src="images/nonconvex.png" alt="" width="500" height="400"/></div>
+								<figcaption><a href="https://medium.com/swlh/non-convex-optimization-in-deep-learning-26fa30a2b2b3">fig.</a> Surface of a non-convex objective function </figcaption>
+								</figure>
+								</center>
+
+								<!-- for space -->
+								&nbsp; 
+								&nbsp; 
+								
+								<!-- <h3>1. How fast can the algorithm learn and converge?</h3> -->
+								<h3>Challenges when using Neural networks for non-convex optimizations</h3>
+								<ol>
+								<li> <b>Hyperparamter Optimization: </b> <br> In comparison to Genetic Algorithms, Neural Networks have more hyperparameters to be optimized
+									 like learning rate (need to be specified for gradient descent approach), 
+								number of hidden layers required, number of neurons/nodes required in each layer, 
+								choice of activation functions etc. in addition to factors like the number of iterations/epochs required. 
+								It could take a significant/polynomial time to optimize all of the hyperparameters. Therefore, it is at least an NP-Hard problem.
+								</li>
+
+								<center>
+								<figure>
+								<div class="animated-gif"><img src="images/Opt.gif" alt="" width="500" height="400"/></div>
+								<figcaption><a href="https://pin.it/6E7hJn3">fig.</a> Learning and converging rates of some Neural network extensions that I will talk about below</figcaption>
+								</figure>
+								</center>
+
+								
+								&nbsp; 
+								<li><b>Poor conditioning of the cost function: </b> <br> Genetic Algorithms do not require the error terms (cost function) to be minimized. 
+									They follow a heuristic approach wherein the solutions are randomly generated 
+									through techniques like selection, crossover, and mutation which are unique to them, and substituted in the objective functions to search for global optima. 
+									Whereas if Neural Networks are used in an optimization problem, they are required to fit a model and minimize the residual term. 
+									This means that there is a possibility of poor conditioning of the cost function.  
+								</li>
+								
+								&nbsp; 
+								<p> Hessian matrices of cost functions, which are
+									second-order partial derivatives of cost functions with respect to explanatory variables describe the local curvatures of the function along 
+									the axes ot those variables.
+
+									<center>
+										<figure>
+										<div class="image"><img src="images/hessian.png" alt="" width="250" height="200"/></div>
+										<figcaption>fig. Hessian Matrix </figcaption>
+										</figure>
+									</center>
+
+
+									Hence, hessian matrices are used to determine if a solution is a saddle point or not. But for neural networks, computing and storing full hessian matrix
+									takes O(n<sup>2</sup>) memory, which is not feasible as they have complex cost functions. Hence, an approximation is 
+									made using numerical methods like truncated-Newton algorithms, which lead to poor conditioning of errors. This could result in slower learning rates, rapid changes 
+									in output for a small change in inputs etc., as the optimization process is not stable.
+								</p>
+
+
+								<li><b>Vanishing/Exploding Gradient problem:</b> <br> 
+									In forward propagation, neural networks are initialized by assigning random weights to the nodes, transformed using an activation function, 
+									and a non-linear model is fitted.
+									In the process of backward propagation, the weights (slope) and the constant (intercept) are used to minimize the cost function as 
+									per below formula and are updated at a pre-specified learning rate. This updation of weights approach is called gradient descent.<br> 
+
+									&nbsp; 
+									<center>
+									<math>
+										<b>W<sub>new</sub> = W<sub>old</sub> - α*<box>dL/dw</box> </b> <br> 
+									
+
+									<!-- Wnew = Wold – (α * dL/dw) -->
+
+									where,
+
+									W<sub>new</sub> = the new weight of explanatory variable X<sub>i</sub>; <br> 
+
+									W<sub>old</sub> = the old weight of explanatory variable X<sub>i</sub>; <br> 
+
+									α = learning rate; <br> 
+
+									<box>dL/dw</box> is the partial derivative of the loss function for each of the Xs. 
+										It is the rate of change of the loss function to the change in weight.
+
+									</math>
+									</center>
+
+									<!-- <center>
+										<figure>
+										<div class="image"><img src="images/cost.jfif" alt="" width="200" height="50"/></div>
+										<figcaption>fig. Gradient Descent formula </figcaption>
+										</figure>
+									</center> -->
+								</li>
+
+								&nbsp; 
+								<p>
+									Sometimes when this gradient approaches zero due to the characterstic of the activation functions or at saddle points and 
+									local minima, the weights dont update. This is called vanishing gradient problem. When the gradient approaches infinity, 
+									it is called exploding gradient problem. In sequential models like Recurrent Neural Networks, Long-short-term memory models (RNN/LSTM) 
+									which are predominantly used for NLP, these mean 
+									zero correlation of the current state with previous state and 100% correlation respectively.
+								</p>
+
+								<!-- &nbsp;  -->
+								<p>
+									In order to address these various solutions were proposed like gradient clipping (where the gradients are constrained by a threshold), usage of 
+									activation functions like Rectified Linear Units (ReLU), Stochastic Gradient Descent (SGD - adding a stochastic term to gradient descent which 
+									updates weights randomly), Momentum, NAG, Adaptive Learning Rate, Adagrad, Adadelta, Rmsprop etc.
+								</p>
+							
+								<center>
+									<figure>
+									<div class="image"><img src="images/SGD.png" alt="" width="550" height="300"/></div>
+									<figcaption><a href="https://ankit-ai.blogspot.com/2018/11/optimization-algorithms-for-machine.html">fig.</a> Stochastic Gradient Descent Vs Gradient Descent </figcaption>
+									</figure>
+								</center>
+
+								<p>
+									From the above image, SGD also is at the risk of getting stuck in local minima. So we can eliminate it as a possible solution.
+		
+								</p>
+
+								<p>
+
+									
+								</p>
+
+							</ol>
 							</section>
 
 					</div>
@@ -61,8 +193,8 @@
 					<section class="split contact">
 						<section class="alt">
 							<h3>Address</h3>
-							<p>186 Lake Shore Rd, Apt 1<br />
-							Boston, MA 02135</p>
+							<p>61 Algonquin Rd,<br />
+								Chestnut Hill, MA-02467</p>
 						</section>
 						<section>
 							<h3>Email</h3>

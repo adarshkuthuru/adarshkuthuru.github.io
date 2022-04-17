@@ -243,6 +243,11 @@ input, select, textarea {
 		padding: 0.5rem 0 0.5rem 2rem;
 	}
 
+
+	cite {
+		font-style: italic;
+	}
+
 	code {
 		border: solid 2px;
 		font-family: "Courier New", monospace;
