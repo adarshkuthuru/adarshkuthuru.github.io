@@ -3960,16 +3960,16 @@ input, select, textarea {
         max-width: 300px;
         width: 100%;
         font-size: 20px;
-        border-color: rgba(255, 7, 7, 0.952);
-        background-color: rgb(197, 12, 12);
+        /* border-color: rgba(255, 7, 7, 0.952); */
+        background-color: rgb(12, 12, 12);
         padding: .5px;
         border-radius: 4px;
 
     }
 /*On Hover Color Change*/
-    #myBtn:hover {
+    /* #myBtn:hover {
         background-color: #f80606;
-    }
+    } */
 
 /* Footer */
 
