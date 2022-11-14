@@ -3952,11 +3952,11 @@ input, select, textarea {
 
 /*Floating Back-To-Top Button*/
     #myBtn {
-        /* position: fixed; */
-        bottom: 200px;
+        position: absolute;
+        bottom: 0%;
         /* float: center; */
-        /* right: 50%; */
-        left: 60%;
+        right: 60%;
+        left: 40%;
         max-width: 300px;
         width: 100%;
         font-size: 20px;
@@ -3968,7 +3968,7 @@ input, select, textarea {
     }
 /*On Hover Color Change*/
     #myBtn:hover {
-        background-color: #0a0a0a;
+        background-color: #f80606;
     }
 
 /* Footer */
