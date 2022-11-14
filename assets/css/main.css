@@ -3577,7 +3577,7 @@ input, select, textarea {
 			letter-spacing: 0.075em;
 			line-height: 1;
 			padding: 1rem 1.75rem;
-			text-transform: uppercase;
+			/* text-transform: uppercase; */
 			visibility: visible;
 		}
 
@@ -3949,6 +3949,27 @@ input, select, textarea {
 			}
 
 		}
+
+/*Floating Back-To-Top Button*/
+    #myBtn {
+        /* position: fixed; */
+        bottom: 200px;
+        /* float: center; */
+        /* right: 50%; */
+        left: 60%;
+        max-width: 300px;
+        width: 100%;
+        font-size: 20px;
+        border-color: rgba(255, 7, 7, 0.952);
+        background-color: rgb(197, 12, 12);
+        padding: .5px;
+        border-radius: 4px;
+
+    }
+/*On Hover Color Change*/
+    #myBtn:hover {
+        background-color: #0a0a0a;
+    }
 
 /* Footer */
 
