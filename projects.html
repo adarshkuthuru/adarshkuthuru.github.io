@@ -12,133 +12,92 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+
 	<body class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Header -->
-					<header id="header">
-						<a href="about.html" class="logo">Projects</a>
-					</header> 
+				<header id="header">
+					<a href="projects.html" class="logo">Projects</a>
+				</header> 
+
+				<a name ="top"></a> <!-- Tag for 'Back to Top' Button-->
 
 				<!-- Nav -->
 				<nav id="nav">
 					<ul class="links">
+						<!-- <li><a href="index_old.html">Test</a></li> -->
 						<li><a href="index.html">About me</a></li>
 						<li><a href="resources.html">Resources</a></li>
 						<li class="active"><a href="projects.html">Projects</a></li>
 					</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/adarshkp1/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://github.com/adarshkuthuru?tab=repositories" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/adarshkp1/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/adarshkuthuru?tab=repositories" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
 
 				
-					<!-- Main -->
-					<div id="main">
+				
+				<!-- Main -->
+				<div id="main">
 
-						<a name ="top"></a> <!-- Tag for 'Back to Top' Button-->
+					<!-- Posts -->
+					<section class="posts">
 
-						<!-- Featured Post -->
-							<!-- <article class="post featured">
-								<header class="major"> -->
-									<!-- <span class="date">April 25, 2017</span> -->
-								<!--	<h2><a href="#">And this is a<br />
-									massive headline</a></h2>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Full Story</a></li>
-								</ul>
-							</article> -->
+						<!-- Post-1: Job Similarity -->
+						<article>
+							<header>
+								<h2><a href="#"> Job similarity with seniority matching </a></h2>
+							</header>
+							<!-- <a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a> -->
+							<p> In this project, we employ Natural Language Processing (NLP) to give job recommendations to candidates based on their previous applications.
+								We perform two rounds of matching to identify if two jobs are related based on the job description text. The first is
+								similarity macthing based on cosine similarities of the sentence embeddings generated using a 
+								variant of SBERT transformer model. In the second round, we identify seniority related text in the job descriptions, 
+								train the model by assigning seniority labels to each sentence, 
+								and then identify whether two jobs are of same seniority level based on the cosine similarities of the seniority sentences.
+							</p>
+							<ul class="actions special">
+								<!-- <li><a href="#" class="button">Full Story (TBD)</a></li> -->
+							</ul>
+						</article>
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<h2><a href="#"> 1. Social Media Activity Indicators and Return Predictability</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>This is a study done with Prof. Sadka, where we try to understand the abnormal 
-										returns caused by social media activity in the short-term.		
-									</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story (TBD)</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="#"> 2. Institutional Investor Competition and Managerial skill under new lens</h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>This study builds upon the earlier published work in the Review of Financial Studies 
-										(RFS) in 2020 by my co-authors (Prof. Hoberg, Prof. Kumar, Prof. Prabhala). </p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story (TBD)</a></li>
-									</ul>
-								</article>
-							</section>
+						<!-- Post-2: Social Media Activity Indicators -->
+						<article>
+							<header>
+								<h2><a href="#"> Social Media Activity Indicators and Return Predictability</a></h2>
+							</header>
+							<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+							<p>This is a study done with Prof. Sadka, where we try to understand the abnormal 
+								returns caused by social media activity in the short-term.		
+							</p>
+							<ul class="actions special">
+								<li><a href="#" class="button">Read more (TBD)</a></li>
+							</ul>
+						</article>
 
-							<button id="myBtn"><a href="#top" style="color: rgb(255, 255, 255)">Back to top</a></button>
+						<!-- Post-3: MF competition, skill, and alpha presistence -->
+						<article>
+							<header>
+								<h2><a href="#"> Institutional Investor Competition and Managerial skill under new lens</h2>
+							</header>
+							<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+							<p>This study builds upon the earlier published work in the Review of Financial Studies 
+								(RFS) in 2020 by my co-authors (Prof. Hoberg, Prof. Kumar, Prof. Prabhala). </p>
+							<ul class="actions special">
+								<li><a href="#" class="button">Read more (TBD)</a></li>
+							</ul>
+						</article>
+					</section>
 
-					</div> 
+					<button id="myBtn"><a href="#top" style="color: rgb(255, 255, 255)">Back to top</a></button>
+
+				</div> 
 
 				
-
-				<!-- Footer 
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer> -->
-
 
 				<!-- Footer -->
 				<footer id="footer">
@@ -161,7 +120,7 @@
 					</section>
 				</footer>
 
-			<!-- Copyright -->
+				<!-- Copyright -->
 				<div id="copyright">
 					<ul><li>&copy; adarshkuthuru</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
 				</div>
