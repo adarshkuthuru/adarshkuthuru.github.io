@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Solving non-convex optimization problems</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<script src="assets/js/image_zoom_AK.js"></script>  <!-- Function to zoom images when clicked upon -->
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+
+						<!-- Post -->
+							<section class="post">
+								
+
+							<!-- <header class="major"> -->
+								<h2>Solving non-convex optimization problems</h2>
+								<h4>Adarsh Kuthuru</h4>
+									<!-- <h3>Explanation for why we can't use Neural Networks for non-convex optimization -->
+										<!-- problems instead of Genetic Algorithms</h3> -->
+								<!-- </header> -->
+								<br><br>
+								<h3>Introduction</h3>
+								<p>The process of selecting an appropriate algorithm to resolve non-linear (non-convex) optimization issues relies on several pivotal factors, including:
+									<ol>
+									<li> The learning speed and convergence rate of the algorithm (significantly influenced by its initialization)</li>
+									<li> Strategies to handle situations where the solution becomes trapped in local optima or saddle points</li>
+									<li>   The algorithm's responsiveness to new data, that is, if the training dataset doesn't accurately reflect the entire population, how well would the algorithm perform with test data?</li>
+									</ol> 
+								
+								<center>
+								<figure>
+									<div class="image" style="cursor: pointer">
+										<img id = "nonconvexImg" src="images/nonconvex.png" alt="" width="500" height="400" onclick="zoomFunction(this)"/>
+									</div>
+									<figcaption><a href="https://medium.com/swlh/non-convex-optimization-in-deep-learning-26fa30a2b2b3">Fig. Surface of a Non-Convex Objective Function </a> </figcaption>
+								</figure>
+								</center>
+								<br>
+								<h3>Animation of Non-Convex Objective Optimization process</h3>
+								<center>
+									<figure>
+										<div class="image" style="cursor: pointer">
+											<img id = "nonconvexImg" src="images/pso_nonconvex.gif" alt="" width="1100" height="600" onclick="zoomFunction(this)"/>
+										</div>
+										<figcaption> 
+											<a href="https://gbhat.com/machine_learning/pso_nonconvex.html">Fig. Illustration of Non-Convex Objective Optimization Process </a> 
+											<br> Front View (Left), Top view (Right)
+										</figcaption>
+									</figure>
+									</center>
+
+								<br><br>
+
+								<h3>Potential Difficulties in Using Neural Networks for Non-Convex Optimizations Instead of Genetic Algorithms</h3>
+								<ol>
+								<li> <b>Hyperparameter Optimization: </b> <br> Neural Networks, in contrast to Genetic Algorithms, have more hyperparameters that need to be fine-tuned. 
+									These include parameters like the learning rate (required for gradient descent approaches), the number of hidden layers, the count of neurons in each layer, 
+									and the choice of activation functions, among others. Furthermore, factors like the number of iterations or epochs needed can be taken into consideration. 
+									Optimizing all these parameters may take substantial computational time, making it at least an NP-Hard problem.
+								</li>
+								
+								<center>
+									<figure>
+										<div class="image" style="cursor: pointer">
+											<img id="neuralnetImg" src="images/neuralnet.png" alt="" width="600" height="300" onclick="zoomFunction(this)"/>
+										</div>
+										<figcaption><a href="https://blog.floydhub.com/guide-to-hyperparameters-search-for-deep-learning-models/">Fig.</a> Example of a Neural Network with 3 Hidden Layers</figcaption>
+									</figure>
+								</center>
+								
+								
+								<br>
+
+								<li><b>Cost Function Conditioning: </b> <br> Unlike Genetic Algorithms, which don't rely on the minimization of error terms (cost function), Neural Networks necessitate 
+									the minimization of the residual term to fit a model. This might lead to a condition known as poor function conditioning.
+								</li>
+				
+								
+								Hessian matrices, composed of second-order partial derivatives of cost functions with respect to input variables, depict the local curvature of these functions along different axes.
+								
+								<center>
+									<figure>
+									<div class="image"  style="cursor: pointer"><img src="images/hessian.png" alt="" width="250" height="200" onclick="zoomFunction(this)"/></div>
+									<figcaption>Fig. Representation of a Hessian Matrix </figcaption>
+									</figure>
+								</center>
+								
+								For Neural Networks, the computation and storage of a full Hessian matrix, which consumes O(n<sup>2</sup>) memory, isn't practical due to their complex cost functions. Therefore, 
+								approximations are often made using numerical methods such as truncated-Newton algorithms. However, this approximation can lead to poor conditioning of errors, causing slower 
+								learning rates, and sudden, drastic changes in outputs for minute variations in inputs, making the optimization process less stable.
+								
+						
+								<br><br>
+
+								
+
+								<li><b>Vanishing/Exploding Gradient Problem:</b> <br> 
+									During forward propagation, random weights are assigned to nodes in neural networks, which are then transformed using an activation function to fit a non-linear model.
+									In the process of backward propagation, the weights (slope) and the constant (intercept) are adjusted to minimize the cost function according to the following formula. This weight adjustment approach is known as gradient descent.<br> 
+									
+									<br>
+									<center>
+									<math>
+										<b>W<sub>new</sub> = W<sub>old</sub> - α*<box>dL/dw</box> </b> <br> 
+										where,
+
+										W<sub>new</sub> = the new weight of explanatory variable X<sub>i</sub>; <br> 
+
+										W<sub>old</sub> = the previous weight of explanatory variable X<sub>i</sub>; <br> 
+
+										α = learning rate; <br> 
+
+										<box>dL/dw</box> is the partial derivative of the loss function for each of the Xs. 
+											It represents the rate of change of the loss function with respect to the change in weight.
+
+									</math>
+									</center>
+									<br>
+
+									<p>
+										However, there are scenarios where this gradient becomes extremely small (approaching zero), due to the characteristics of the activation functions, saddle points, or local minima, which result in weights that do not update - a phenomenon known as the vanishing gradient problem. Conversely, if the gradient becomes extremely large (approaching infinity), we encounter what's known as the exploding gradient problem. In sequential models such as Recurrent Neural Networks or Long Short-Term Memory models (RNN/LSTM), commonly used in NLP, these scenarios correspond to zero correlation with the previous state and 100% correlation, respectively.
+									</p>
+									
+									<center>
+										<figure>
+										<div class="animated-gif" style="cursor: pointer"><img src="images/Opt.gif" alt="" width="500" height="400" onclick="zoomFunction(this)"/></div>
+										<figcaption><a href="https://pin.it/6E7hJn3">fig.</a> Learning and converging rates of some Neural network extensions that I will talk about below</figcaption>
+										</figure>
+									</center>
+									<br>
+									<p>
+										Various solutions have been proposed to address these issues, such as gradient clipping (where the gradients are constrained by a threshold), the use of 
+										activation functions like Rectified Linear Units (ReLU), and methods like Stochastic Gradient Descent (SGD - which introduces a stochastic term to gradient descent and 
+										updates weights in a randomized manner), Momentum, NAG, Adaptive Learning Rate, Adagrad, Adadelta, and RMSProp, among others.
+									</p>
+									
+									
+								</p>
+
+								<ul>
+								
+									<figure style="text-align: center;">
+										<div class="image" style="cursor: pointer">
+											<img src="images/SGD.png" alt="" width="550" height="300" onclick="zoomFunction(this)"/>
+										</div>
+										<figcaption>
+											<a href="https://ankit-ai.blogspot.com/2018/11/optimization-algorithms-for-machine.html">Fig.</a> Stochastic Gradient Descent Vs Gradient Descent
+										</figcaption>
+									</figure>
+								
+								
+									<li><b>Stochastic Gradient Descent:</b> <br> 
+										The above visualization indicates that SGD could potentially get stuck in local minima. However, it's important to note that this doesn't completely eliminate its applicability in all scenarios.
+									</li>
+								
+									<li><b>Stochastic Gradient Descent with Momentum:</b> <br> 
+										When faced with curvature, conventional SGD may oscillate, potentially slowing convergence. Consequently, the SGD with momentum approach was suggested, where gradients are averaged to reduce oscillations and accelerate the path to optimization.
+									</li>
+								
+									<figure style="text-align: center;">
+										<div class="image" style="cursor: pointer">
+											<img src="images/mom.png" alt="" width="450" height="150" onclick="zoomFunction(this)"/>
+										</div>
+										<figcaption>
+											<a href="https://mitpress.mit.edu/books/deep-learning">Fig.</a> (Left) Regular SGD, (right) SGD with Momentum. 
+											<br>Goodfellow, I., Bengio, Y. and Courville, A. (2016). Deep learning. MIT press.
+										</figcaption>
+									</figure>
+								
+								
+									<li><b>Adaptive learning rate:</b> <br> 
+										The visualization below represents the minimization of the cost function 'J' which is a function of parameters Θ<sub>1</sub> & Θ<sub>2</sub>. The idea is to adjust the magnitude of oscillations proportionally to the range of the parameter. Therefore, lower learning rates are considered for lower oscillations and higher rates for higher oscillations.
+									</li>
+								
+									<figure style="text-align: center;">
+										<div class="image" style="cursor: pointer">
+											<img src="images/adalearn.png" alt="" width="450" height="250" onclick="zoomFunction(this)"/>
+										</div>
+										<figcaption>
+											<a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">Fig.</a> Adaptive learning rates.
+										</figcaption>
+									</figure>
+								
+								
+									<li><b>AdaGrad:</b> <br> 
+										In the AdaGrad method, rather than adding a random term to the gradient to update weights as done in SGD, parameters are updated to guide the path to optimization more accurately. This update factor is proportional to the relevance of the parameter, thus earning its 'adaptive' name.
+										<p>
+											One benefit of AdaGrad is the decreased reliance on manual adjustment of the learning rate, potentially aiding progress along directions with gentler slopes.
+										</p>
+									</li>
+								
+									<figure style="text-align: center;">
+										<div class="image" style="cursor: pointer">
+											<img src="images/adagrad.png" alt="" width="450" height="150" onclick="zoomFunction(this)"/>
+										</div>
+										<figcaption>
+											<a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">Fig.</a> AdaGrad gradient updation.
+										</figcaption>
+									</figure>
+									
+									<center>
+										where, <span class="theta-symbol">&#952;</span><sub>i</sub> = i<sup>th</sup> parameter; <br> 
+										r<sub>i</sub> = cumulative gradient of i<sup>th</sup> parameter; <br> 
+										g<sub>i</sub> = current gradient of i<sup>th</sup> parameter; <br> 
+										δ, ε ~ N(0,1) (iid) <br> 
+									  </center>
+									  
+									  <style>
+										.theta-symbol {
+										  font-family: "Times New Roman", Times, serif;
+										  font-size: 24px;
+										  /* font-style: italic; */
+										}
+									  </style>
+									  
+								
+									<li><b>RMSProp:</b> <br> 
+										Although AdaGrad can be beneficial, it may not perform well for non-convex problems as it can potentially decrease the learning rate too rapidly. RMSProp addresses this issue by giving higher weights to steeper slopes, enhancing the speed of optimization.
+									</li>
+								
+									<figure style="text-align: center;">
+										<div class="image" style="cursor: pointer">
+											<img src="images/rmsprop.png" alt="" width="200" height="100" onclick="zoomFunction(this)"/>
+										</div>
+										<figcaption>
+											<a href="https://towardsdatascience.com/neural-network-optimization-7ca72d4db3e0">Fig.</a> RMSProp exponential gradient updation
+										</figcaption>
+									</figure>
+								
+								</ul>
+
+								
+									<h3>Conclusion:</h3>
+									<p>While the use of Neural Networks for non-convex optimizations presents certain complexities, it remains a powerful tool when correctly adjusted. However, there is a trade-off to consider: highly accurate models may require longer convergence times, and the use of approximations may lead to poor conditioning, resulting in slower learning rates and rapid output changes in response to slight input variations. This is because the optimization process may not be stable.</p>
+								
+									<p>Genetic Algorithms, on the other hand, are explicitly designed for solving optimization problems and, as such, do not face most of the challenges encountered by Neural Networks. However, they employ a heuristic approach, meaning that some approximations are inherent, and solutions may not be perfectly accurate. The question to ask when selecting an algorithm for our optimization problem is our tolerance for accuracy and speed. By mapping out the accuracy levels and convergence times for these algorithms, we can make an informed selection.</p>
+									
+									<p>
+										In conclusion, although Genetic Algorithms can often be the go-to solution for non-convex optimizations, other factors such as accuracy, ease of customization, and others should also be considered when selecting the most suitable algorithm.
+									</p>
+								</li>
+
+
+							</section>
+
+							<a href="#top">
+								<button id="myBtn" style="color: rgb(255, 255, 255)">Back to top</button>
+							</a>
+					</div>
+
+				
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section class="alt">
+							<h3>Address</h3>
+							<p>Boston, MA</p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p><a href="adarshkuthuru@gmail.com">adarshkuthuru@gmail.com</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/adarshkp1/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/adarshkuthuru?tab=repositories" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+				<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>&copy; adarshkuthuru</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
