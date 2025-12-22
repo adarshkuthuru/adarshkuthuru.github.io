@@ -567,7 +567,7 @@ input, select, textarea {
 			}
 
 				.row.gtr-200.gtr-uniform > * {
-					padding-top: 3rem;
+					padding-top: 1.5rem;
 				}
 
 		@media screen and (max-width: 1680px) {
@@ -810,7 +810,7 @@ input, select, textarea {
 					}
 
 						.row.gtr-200.gtr-uniform > * {
-							padding-top: 3rem;
+							padding-top: 1.5rem;
 						}
 
 		}
@@ -1055,7 +1055,7 @@ input, select, textarea {
 					}
 
 						.row.gtr-200.gtr-uniform > * {
-							padding-top: 3rem;
+							padding-top: 1.5rem;
 						}
 
 		}
@@ -1300,7 +1300,7 @@ input, select, textarea {
 					}
 
 						.row.gtr-200.gtr-uniform > * {
-							padding-top: 3rem;
+							padding-top: 1.5rem;
 						}
 
 		}
@@ -1545,7 +1545,7 @@ input, select, textarea {
 					}
 
 						.row.gtr-200.gtr-uniform > * {
-							padding-top: 3rem;
+							padding-top: 1.5rem;
 						}
 
 		}
@@ -1790,7 +1790,7 @@ input, select, textarea {
 					}
 
 						.row.gtr-200.gtr-uniform > * {
-							padding-top: 3rem;
+							padding-top: 1.5rem;
 						}
 
 		}
@@ -2035,7 +2035,7 @@ input, select, textarea {
 					}
 
 						.row.gtr-200.gtr-uniform > * {
-							padding-top: 3rem;
+							padding-top: 1.5rem;
 						}
 
 		}
@@ -3303,10 +3303,10 @@ input, select, textarea {
 		-webkit-flex-direction: column;
 		-ms-flex-direction: column;
 		flex-direction: column;
-		-moz-justify-content: -moz-flex-end;
-		-webkit-justify-content: -webkit-flex-end;
-		-ms-justify-content: -ms-flex-end;
-		justify-content: flex-end;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
+		justify-content: center;
 		-moz-transition: opacity 1s ease, -moz-transform 1s ease;
 		-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
 		-ms-transition: opacity 1s ease, -ms-transform 1s ease;
@@ -3407,6 +3407,7 @@ input, select, textarea {
 		}
 
 			#intro + #header .logo {
+			margin-top: 3rem;
 				-moz-transform: translateY(2rem);
 				-webkit-transform: translateY(2rem);
 				-ms-transform: translateY(2rem);
@@ -3511,18 +3512,21 @@ input, select, textarea {
 		-webkit-flex-direction: column;
 		-ms-flex-direction: column;
 		flex-direction: column;
-		-moz-justify-content: -moz-flex-end;
-		-webkit-justify-content: -webkit-flex-end;
-		-ms-justify-content: -ms-flex-end;
-		justify-content: flex-end;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
+		justify-content: center;
 		pointer-events: none;
 		-moz-user-select: none;
 		-webkit-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
-		height: 20rem;
-		padding-bottom: 8rem;
+		height: 24rem;
+		min-height: 24rem;
+		padding-top: 3rem;
+		padding-bottom: 2rem;
 		position: relative;
+		margin-top: 0;
 		text-align: center;
 		z-index: 2;
 	}
@@ -3563,6 +3567,8 @@ input, select, textarea {
 		}
 
 		#header .logo {
+			margin-top: 1.5rem;
+			overflow: visible;
 			-moz-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, -moz-transform 0.5s ease, visibility 0.5s;
 			-webkit-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, -webkit-transform 0.5s ease, visibility 0.5s;
 			-ms-transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease, -ms-transform 0.5s ease, visibility 0.5s;
@@ -3576,8 +3582,10 @@ input, select, textarea {
 			font-weight: 900;
 			letter-spacing: 0.075em;
 			line-height: 1;
-			padding: 1rem 1.75rem;
+			padding: 1rem 2rem;
 			/* text-transform: uppercase; */
+			white-space: nowrap;
+			overflow: visible;
 			visibility: visible;
 		}
 
@@ -3586,12 +3594,26 @@ input, select, textarea {
 				color: #18bfef !important;
 			}
 
+
+		#header .brand-tagline {
+			margin-top: 0.25rem;
+			color: #ffffff;
+			font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			font-size: 0.85rem;
+			font-weight: 400;
+			margin-top: 0.25rem;
+			margin-bottom: 0.5rem;
+			opacity: 0.9;
+			text-align: center;
+			letter-spacing: 0.05em;
+		}
 		#header .last-updated {
+			margin-top: 0.25rem;
 			color: #ffffff;
 			font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 			font-size: 0.65rem;
 			font-weight: 400;
-			margin-top: 0.75rem;
+			margin-top: 0.25rem;
 			opacity: 0.8;
 			text-align: center;
 		}
@@ -3600,7 +3622,8 @@ input, select, textarea {
 
 			#header {
 				height: 14rem;
-				padding-bottom: 4rem;
+				padding-top: 2rem;
+				padding-bottom: 2rem;
 			}
 
 		}
@@ -3608,12 +3631,16 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			#header {
-				padding-bottom: 3rem;
+				padding-top: 1.5rem;
+				padding-bottom: 2rem;
 			}
 
 				#header .logo {
+				letter-spacing: 0.05em;
+				padding: 0.875rem 1.5rem;
 					font-size: 1.75rem;
 					border-width: 3px !important;
+					margin-top: 2.5rem;
 				}
 
 		}
@@ -3971,9 +3998,11 @@ input, select, textarea {
         width: 100%;
         font-size: 20px;
         /* border-color: rgba(255, 7, 7, 0.952); */
-        background-color: rgb(235, 175, 13);
+        background-color: #ffffff !important;
+        color: #000000 !important;
         padding: .5px;
         border-radius: 4px;
+        box-shadow: none !important;
 
     }
 /*On Hover Color Change*/
