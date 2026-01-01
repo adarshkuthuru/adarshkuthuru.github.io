@@ -25,6 +25,50 @@
 		}
 	}
 
+	/* Professional Summary Box with Photo */
+	.professional-summary-box {
+		display: flex;
+		align-items: flex-start;
+		gap: 2rem;
+	}
+
+	.professional-summary-content {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.professional-photo-wrapper {
+		flex-shrink: 0;
+	}
+
+	.professional-photo {
+		width: 200px;
+		height: 250px;
+		object-fit: cover;
+		border-radius: 8px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		border: 2px solid _palette(border);
+	}
+
+	@include breakpoint('<=medium') {
+		.professional-summary-box {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.professional-photo {
+			width: 180px;
+			height: 225px;
+		}
+	}
+
+	@include breakpoint('<=small') {
+		.professional-photo {
+			width: 160px;
+			height: 200px;
+		}
+	}
+
 	@mixin color-box($p: null) {
  		.box {
  			border-color: _palette($p, border);
