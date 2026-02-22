@@ -2065,11 +2065,17 @@ input, select, textarea {
 	/* Professional Summary Box with Photo */
 	.professional-summary-box {
 		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.professional-summary-top-row {
+		display: flex;
 		align-items: flex-start;
 		gap: 2rem;
 	}
 
-	.professional-summary-content {
+	.professional-summary-content-1 {
 		flex: 1;
 		min-width: 0;
 	}
@@ -2088,7 +2094,7 @@ input, select, textarea {
 	}
 
 	@media screen and (max-width: 736px) {
-		.professional-summary-box {
+		.professional-summary-top-row {
 			flex-direction: column;
 			align-items: center;
 		}
